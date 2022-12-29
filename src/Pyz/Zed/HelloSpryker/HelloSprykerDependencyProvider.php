@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Pyz\Zed\HelloSpryker;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
+use Spryker\Zed\Kernel\Container;
 
 /**
  * @method \Pyz\Zed\HelloSpryker\HelloSprykerConfig getConfig()

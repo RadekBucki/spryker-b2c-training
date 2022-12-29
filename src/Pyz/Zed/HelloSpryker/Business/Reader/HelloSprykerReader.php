@@ -1,11 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Pyz\Zed\HelloSpryker\Business\Reader;
 
-use Generated\Shared\Transfer\HelloSprykerCollectionTransfer;
-use Generated\Shared\Transfer\HelloSprykerCriteriaTransfer;
+use Generated\Shared\Transfer\HelloSprykerTransfer;
 use Pyz\Zed\HelloSpryker\Persistence\HelloSprykerRepositoryInterface;
 
 class HelloSprykerReader implements HelloSprykerReaderInterface
@@ -21,13 +20,17 @@ class HelloSprykerReader implements HelloSprykerReaderInterface
     }
 
     /**
-    * @param \Generated\Shared\Transfer\HelloSprykerCriteriaTransfer $helloSprykerCriteriaTransfer
-    *
-    * @return \Generated\Shared\Transfer\HelloSprykerCollectionTransfer
-    */
-    public function findHelloSpryker(HelloSprykerCriteriaTransfer $helloSprykerCriteriaTransfer): HelloSprykerCollectionTransfer
-    {
-        // ToDo: Implementation
-        // $this->helloSprykerRepository->findHelloSpryker($helloSprykerCriteriaTransfer);
+     * @param \Generated\Shared\Transfer\HelloSprykerTransfer $helloSprykerTransfer
+     *
+     * @return \Generated\Shared\Transfer\HelloSprykerTransfer
+     */
+    public function findHelloSpryker(HelloSprykerTransfer $helloSprykerTransfer): HelloSprykerTransfer {
+        $helloSprykerTransfer = $this->helloSprykerRepository->findPyzHelloSprykerById(
+            $helloSprykerTransfer->getIdHelloSpryker()
+        );
+        if (!$helloSprykerTransfer) {
+            return new HelloSprykerTransfer();
+        }
+        return $helloSprykerTransfer;
     }
 }

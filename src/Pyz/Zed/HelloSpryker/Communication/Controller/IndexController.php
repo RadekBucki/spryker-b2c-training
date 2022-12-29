@@ -24,6 +24,10 @@ class IndexController extends AbstractController
         $helloSprykerTransfer = new HelloSprykerTransfer();
         $helloSprykerTransfer->setOriginalString('Hello Spryker!');
         $helloSprykerTransfer = $this->getFacade()->reverseString($helloSprykerTransfer);
+
+        $helloSprykerTransfer = $this->getFacade()->createHelloSprykerEntity($helloSprykerTransfer);
+        $helloSprykerTransfer = $this->getFacade()->findHelloSpryker($helloSprykerTransfer);
+
         return ['string' => $helloSprykerTransfer->getReversedString()];
     }
 }
