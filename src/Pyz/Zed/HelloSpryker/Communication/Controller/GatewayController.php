@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Pyz\Zed\HelloSpryker\Communication\Controller;
 
@@ -16,11 +16,10 @@ class GatewayController extends AbstractGatewayController
     /**
      * @param \Generated\Shared\Transfer\HelloSprykerTransfer $helloSprykerTransfer
      *
-     * @return \Generated\Shared\Transfer\HelloSprykerTransfer $helloSprykerTransfer
+     * @return \Generated\Shared\Transfer\HelloSprykerTransfer
      */
-    public function customAction(HelloSprykerTransfer $helloSprykerTransfer): HelloSprykerTransfer
+    public function reverseStringAction(HelloSprykerTransfer $helloSprykerTransfer): HelloSprykerTransfer
     {
-        return $this->getFacade()
-                ->customAction($helloSprykerTransfer);
+        return $this->getFacade()->reverseString($helloSprykerTransfer);
     }
 }
