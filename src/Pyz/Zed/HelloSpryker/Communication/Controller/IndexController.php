@@ -28,6 +28,9 @@ class IndexController extends AbstractController
         $helloSprykerTransfer = $this->getFacade()->createHelloSprykerEntity($helloSprykerTransfer);
         $helloSprykerTransfer = $this->getFacade()->findHelloSpryker($helloSprykerTransfer);
 
-        return ['string' => $helloSprykerTransfer->getReversedString()];
+        return [
+            'string' => $helloSprykerTransfer->getReversedString(),
+            'new' => $this->getFactory()->getConfig()->getNew()
+        ];
     }
 }
