@@ -6,6 +6,7 @@ namespace Pyz\Zed\Training\Communication\Controller;
 
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeResponseTransfer;
+use Generated\Shared\Transfer\AntelopeTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
 
 /**
@@ -19,9 +20,20 @@ class GatewayController extends AbstractGatewayController
      *
      * @return \Generated\Shared\Transfer\AntelopeResponseTransfer
      */
-    public function getAntelopeAction(AntelopeCriteriaTransfer $antelopeCriteria): AntelopeResponseTransfer
+    public function findAntelopeAction(AntelopeCriteriaTransfer $antelopeCriteria): AntelopeResponseTransfer
     {
         return $this->getFacade()
             ->getAntelope($antelopeCriteria);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\AntelopeTransfer $antelopeTransfer
+     *
+     * @return \Generated\Shared\Transfer\AntelopeTransfer
+     */
+    public function createAntelopeAction(AntelopeTransfer $antelopeTransfer): AntelopeTransfer
+    {
+        return $this->getFacade()
+            ->createAntelope($antelopeTransfer);
     }
 }
