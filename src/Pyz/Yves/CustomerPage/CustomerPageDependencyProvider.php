@@ -7,12 +7,26 @@
 
 namespace Pyz\Yves\CustomerPage;
 
+use Spryker\Yves\Kernel\Container;
 use SprykerShop\Yves\AgentPage\Plugin\FixAgentTokenAfterCustomerAuthenticationSuccessPlugin;
 use SprykerShop\Yves\CustomerPage\CustomerPageDependencyProvider as SprykerShopCustomerPageDependencyProvider;
 use SprykerShop\Yves\CustomerReorderWidget\Plugin\CustomerPage\CustomerReorderWidgetPlugin;
 
 class CustomerPageDependencyProvider extends SprykerShopCustomerPageDependencyProvider
 {
+    public const CLIENT_TRAINING = 'CLIENT_TRAINING';
+
+    /**
+     * @inheritDoc
+     */
+    public function provideDependencies(Container $container): Container
+    {
+        $container = parent::provideDependencies($container);
+        $container = $this->addTrainingClient($container);
+
+        return $container;
+    }
+
     /**
      * @return string[]
      */
@@ -51,5 +65,20 @@ class CustomerPageDependencyProvider extends SprykerShopCustomerPageDependencyPr
         return [
             new FixAgentTokenAfterCustomerAuthenticationSuccessPlugin(),
         ];
+    }
+
+    /**
+     * @param \Spryker\Yves\Kernel\Container $container
+     *
+     * @return \Spryker\Yves\Kernel\Container
+     * @throws \Spryker\Service\Container\Exception\FrozenServiceException
+     */
+    protected function addTrainingClient(Container $container): Container
+    {
+        $container->set(static::CLIENT_TRAINING, function (Container $container) {
+            return $container->getLocator()->training()->client();
+        });
+
+        return $container;
     }
 }

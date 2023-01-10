@@ -1,0 +1,13 @@
+{% extends template('page-layout-main') %}
+
+{% define data = {
+hello: _view.hello,
+spryker: _view.spryker,
+exclamation: _view.exclamation
+} %}
+
+{% block content %}
+    <div>
+        <h2>{{ data.hello }} {{ data.spryker }}{{ data.exclamation }}</h2>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <hello-spryker>
+        <label>HelloSpryker</label>
+        <title>HelloSpryker</title>
+        <pages>
+        </pages>
+    </hello-spryker>
+</config>
